@@ -9,7 +9,6 @@ const grid = new Grid(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 setupInput()
-console.log(grid.cellsByColumn)
 function setupInput(){
     window.addEventListener("keydown", handleInput, { once: true })
 }
@@ -40,13 +39,13 @@ function moveUp(){
     return slideTiles(grid.cellsByColumn)
 }
 function moveDown(){
-    return slideTiles(grid.cellsByColumn)
+    return slideTiles(grid.cellsByColumn.map(column => [...column].reverse()))
 }
 function moveLeft(){
-    return slideTiles(grid.cellsByColumn)
+    return slideTiles(grid.cellsByRow)
 }
 function moveRight(){
-    return slideTiles(grid.cellsByColumn)
+    return slideTiles(grid.cellsByRow.map(column => [...column].reverse()))
 }
 
 function slideTiles(cells){
