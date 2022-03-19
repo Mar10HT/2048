@@ -13,21 +13,26 @@ export default class Grid{
         })
        
     }
+
+    get cells(){
+        return this.#cells
+    }
     
-    get cellsByColumn(){
-        return this.#cells.reduce((cellGrid, cell)=>{
-            cellGrid[cell.y] = cellGrid[cell.y] || []
-            cellGrid[cell.y][cell.x] = cell
-            return cellGrid
+    get cellsByRow() {
+        return this.#cells.reduce((cellGrid, cell) => {
+          cellGrid[cell.y] = cellGrid[cell.y] || []
+          cellGrid[cell.y][cell.x] = cell
+          return cellGrid
         }, [])
-    }
-    get cellsByRow(){
-        return this.#cells.reduce((cellGrid, cell)=>{
-            cellGrid[cell.x] = cellGrid[cell.x] || []
-            cellGrid[cell.x][cell.y] = cell
-            return cellGrid
+      }
+    
+      get cellsByColumn() {
+        return this.#cells.reduce((cellGrid, cell) => {
+          cellGrid[cell.x] = cellGrid[cell.x] || []
+          cellGrid[cell.x][cell.y] = cell
+          return cellGrid
         }, [])
-    }
+      }
 
     get #emptyCells(){
         return this.#cells.filter(cell=> cell.tile == null)
@@ -68,7 +73,7 @@ class Cell{
     }
 
     get mergeTile(){
-        return this.#mergeTile = value
+        return this.#mergeTile
     }
 
     set mergeTile(value){
@@ -80,6 +85,13 @@ class Cell{
 
     canAccept(tile){
         return(this.tile == null || (this.mergeTile == null && this.tile.value == tile.value))
+    }
+
+    mergeTiles(){
+        if (this.tile == null || this.mergeTile == null) return
+        this.tile.value = this.tile.value + this.mergeTile.value
+        this.mergeTile.remove()
+        this.mergeTile = null
     }
 }
 
