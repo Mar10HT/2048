@@ -11,6 +11,7 @@ body{
  height: 100vmin;
  margin: 0;
  font-size: 7.5vmin;
+ flex-direction: column;
 }
 
 #game-board{
@@ -22,6 +23,20 @@ body{
     border-radius: 1vmin;
     padding: var(--cell-gap);
     position: relative;
+}
+
+
+#retry-Button{
+    position: relative;
+    top: 1vmin;
+    height: 5%;
+    width: 10%;
+    background-color: rgb(35, 56, 70);
+    border-radius: 1vmin;
+    color: aliceblue;
+    box-shadow: -3px 1px 15px 14px rgba(207,207,207,0.42) inset;
+    border: 1px solid #4488;
+    font-weight: bold;
 }
 
 .cell{

@@ -1,7 +1,10 @@
 import Grid from "./Grid.js"
 import Tile from "./Tile.js"
 
+
 const gameBoard = document.getElementById("game-board")
+
+
 
 const grid = new Grid(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
@@ -54,9 +57,9 @@ async function handleInput(e) {
 
   if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     newTile.waitForTransition(true).then(() => {
-      alert("You lose")
+      alert('You Lose')
     })
-    return
+   return 
   }
 
   setupInput()
@@ -133,3 +136,4 @@ function canMove(cells) {
     })
   })
 }
+
